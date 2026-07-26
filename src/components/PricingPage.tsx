@@ -158,7 +158,23 @@ export function PricingPage({ focusRequest = false }: Props) {
                         (avg {tier.bedsAssumed} beds)
                       </Typography>
                     </Typography>
-                    <Box sx={{ flexGrow: 1 }} />
+                    <Typography variant="body2" color="text.secondary">
+                      {tier.tagline}
+                    </Typography>
+                    <Stack spacing={0.75} sx={{ flexGrow: 1 }}>
+                      {tier.includes.map((line) => (
+                        <Typography
+                          key={line}
+                          variant="body2"
+                          sx={{ display: 'flex', gap: 1 }}
+                        >
+                          <Box component="span" color="primary.main">
+                            •
+                          </Box>
+                          <Box component="span">{line}</Box>
+                        </Typography>
+                      ))}
+                    </Stack>
                     <Button
                       variant={tier.highlight ? 'contained' : 'outlined'}
                       size="large"

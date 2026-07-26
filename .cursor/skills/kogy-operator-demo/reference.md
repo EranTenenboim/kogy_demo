@@ -3,6 +3,14 @@
 ## Tenant account (mock)
 
 ```ts
+type TenantScheduleItem = {
+  id: string;
+  kind: 'medical' | 'grocery' | 'outcall' | 'leisure';
+  title: string;
+  when: string;
+  detail?: string;
+};
+
 type TenantAccount = {
   id: string;
   name: string;
@@ -12,6 +20,7 @@ type TenantAccount = {
   maxAutoOrderPrice: number; // currency units
   walletBalance: number;
   groceryList: string[];
+  schedule: TenantScheduleItem[];
   medicalNotes?: string;
 };
 ```

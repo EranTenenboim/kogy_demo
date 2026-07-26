@@ -13,6 +13,16 @@ export type NodeStatus = 'pending' | 'active' | 'done' | 'blocked' | 'skipped';
 
 export type IntentKind = 'grocery' | 'medical';
 
+export type ScheduleKind = 'medical' | 'grocery' | 'outcall' | 'leisure';
+
+export type TenantScheduleItem = {
+  id: string;
+  kind: ScheduleKind;
+  title: string;
+  when: string;
+  detail?: string;
+};
+
 export type TenantAccount = {
   id: string;
   name: string;
@@ -23,6 +33,7 @@ export type TenantAccount = {
   maxAutoOrderPrice: number;
   walletBalance: number;
   groceryList: string[];
+  schedule: TenantScheduleItem[];
   medicalNotes?: string;
 };
 

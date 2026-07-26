@@ -14,6 +14,7 @@ export const tenants: Record<string, TenantAccount> = {
     maxAutoOrderPrice: 80,
     walletBalance: 240,
     groceryList: ['eggs', 'bread'],
+    schedule: [],
     medicalNotes: 'Mild arthritis; prefers morning visits',
   },
   'tn-mira': {
@@ -26,6 +27,7 @@ export const tenants: Record<string, TenantAccount> = {
     maxAutoOrderPrice: 150,
     walletBalance: 220,
     groceryList: ['tea', 'yogurt'],
+    schedule: [],
     medicalNotes: 'No known emergencies; physiotherapy allowed under auto-order',
   },
 };
@@ -256,7 +258,18 @@ export const scenarios: DemoScenario[] = [
       },
       {
         type: 'tenant-patch',
-        patch: { walletBalance: 229 },
+        patch: {
+          walletBalance: 229,
+          schedule: [
+            {
+              id: 'sch-flink',
+              kind: 'grocery',
+              title: 'Flink grocery delivery',
+              when: 'Today · ETA 30–45 min',
+              detail: 'eggs, bread, milk · €10.80',
+            },
+          ],
+        },
         delayMs: 100,
       },
       {
@@ -553,7 +566,18 @@ export const scenarios: DemoScenario[] = [
       },
       {
         type: 'tenant-patch',
-        patch: { walletBalance: 110 },
+        patch: {
+          walletBalance: 110,
+          schedule: [
+            {
+              id: 'sch-physio',
+              kind: 'medical',
+              title: 'Physiotherapy — Bewegung München',
+              when: 'Day after tomorrow · clinic',
+              detail: 'Foot pain follow-up · €110',
+            },
+          ],
+        },
         delayMs: 100,
       },
       {
@@ -586,5 +610,6 @@ export function cloneTenant(id: string): TenantAccount {
   return {
     ...tenant,
     groceryList: [...tenant.groceryList],
+    schedule: tenant.schedule.map((item) => ({ ...item })),
   };
 }
