@@ -4,7 +4,7 @@
 
 services:
   - type: web
-    name: kogy-operator-demo
+    name: kogsy-operator-demo
     runtime: static
     buildCommand: npm ci && npm run build
     staticPublishPath: dist

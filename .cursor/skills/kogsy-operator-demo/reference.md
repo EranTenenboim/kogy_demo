@@ -1,4 +1,4 @@
-# Kogy demo domain reference
+# Kogsy demo domain reference
 
 ## Tenant account (mock)
 

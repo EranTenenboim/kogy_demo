@@ -38,7 +38,7 @@ export default function App() {
             sx={{ flexGrow: 1, fontWeight: 500, cursor: 'pointer' }}
             onClick={() => goPricing(false)}
           >
-            Kogy
+            Kogsy
           </Typography>
           <Stack direction="row" spacing={1} alignItems="center">
             <Button

@@ -1,9 +1,9 @@
 ---
-description: Kogy operator demo conventions — mock externals, Material UI, thinking trees, operator intervene
+description: Kogsy operator demo conventions — mock externals, Material UI, thinking trees, operator intervene
 alwaysApply: true
 ---
 
-# Kogy Operator Demo
+# Kogsy Operator Demo
 
 - This is a **demo**: mock all outside systems (telephony, grocery, medical, payments).
 - UI: **Google Material Design only** (`@mui/material`, `@mui/icons-material`). No other UI kits.

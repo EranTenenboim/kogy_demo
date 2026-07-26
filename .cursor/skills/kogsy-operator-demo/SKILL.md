@@ -1,14 +1,14 @@
 ---
-name: kogy-operator-demo
+name: kogsy-operator-demo
 description: >-
-  Build and extend the Kogy operator demo: mock tenant inbound calls, AI
+  Build and extend the Kogsy operator demo: mock tenant inbound calls, AI
   thinking trees (grocery vs medical), auto-order account checks, and the
   operator dashboard with AI/manual intervene. Use when working on kogy_demo,
   operator dashboard, tenant calls, thinking tree, grocery/milk, foot/medical,
   physiotherapy, auto-order, or call takeover.
 ---
 
-# Kogy Operator Demo
+# Kogsy Operator Demo
 
 Demo for call-center operators. All external systems are mocked.
 
@@ -52,9 +52,9 @@ Operator must see:
 
 ## Pricing & demo bookings
 
-- Top nav: **Pricing** and **Book a demo** both open the pricing page (Book a demo scrolls to tiers).
-- Each tier **Book a demo** opens a dialog for **email** + **phone**, then logs the lead with selected **price level** (`tierId`, `priceMonthly`) for reporting / CSV export.
-- Anchors for $1,999: GoGoGrandparent (up to $409/mo consumer), After Hour Solutions ($2,000–$4,500/mo tour AI).
+- **Pricing** is client-facing: persuasive plan copy (APIs, AI language quality, leisure vs essentials). No lead log on this page.
+- Each tier **Book a demo** collects email + phone and logs the selected price level silently.
+- Lead log + CSV export live only on **Operator** (internal), never on Pricing.
 
 ## Tech conventions
 

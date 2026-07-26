@@ -36,7 +36,7 @@ function downloadCsv(calls: DemoBookingCall[]) {
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = `kogy-demo-leads-${new Date().toISOString().slice(0, 10)}.csv`;
+  a.download = `kogsy-demo-leads-${new Date().toISOString().slice(0, 10)}.csv`;
   a.click();
   URL.revokeObjectURL(url);
 }
@@ -53,7 +53,7 @@ export function DemoBookingLog({ calls, onClear }: Props) {
       >
         <Stack direction="row" spacing={1} alignItems="center">
           <Typography variant="subtitle1" fontWeight={600}>
-            Demo request log
+            Demo lead log (internal)
           </Typography>
           <Chip size="small" label={`${calls.length}`} />
         </Stack>

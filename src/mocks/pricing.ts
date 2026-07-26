@@ -8,7 +8,7 @@ export type PricingTier = {
   perResidentMonthly: number;
   bedsAssumed: number;
   highlight?: boolean;
-  /** What this plan includes — shown on the pricing card */
+  /** Client-facing benefits — persuasive, not internal ops language */
   includes: string[];
 };
 
@@ -20,63 +20,63 @@ export const pricingTiers: PricingTier[] = [
   {
     id: 'community-299',
     name: 'Starter',
-    tagline: 'Essentials for day-to-day resident support',
+    tagline: 'Warm, reliable AI for everyday essentials',
     priceMonthly: 299,
     perResidentMonthly: 9,
     bedsAssumed: AVERAGE_BEDS,
     includes: [
-      'AI inbound calls with listen → understand → act',
-      'Essentials only: grocery list + basic medical triage',
-      'Limited provider set (1–2 grocery / care options)',
-      'Morning outcall reminders',
-      'Operator intervene to manual',
+      'Compassionate AI calls — listen, understand, then act',
+      'Essentials coverage: grocery lists and basic care triage',
+      'Core API connections to your resident & facility systems',
+      'Clear German / English conversation for daily needs',
+      'Human operator takeover whenever a call needs a person',
     ],
   },
   {
     id: 'community-799',
     name: 'Growth',
-    tagline: 'More providers and better everyday offers',
+    tagline: 'Smarter language, more APIs, better offers',
     priceMonthly: 799,
     perResidentMonthly: 24,
     bedsAssumed: AVERAGE_BEDS,
     highlight: true,
     includes: [
-      'Everything in Starter',
-      'More providers — compare prices across stores & clinics',
-      'Best-price suggestions before ordering',
-      'Leisure basics: local activities & outing booking',
-      'Delivery vs morning-call choice when the list is full',
-      'Physio / care booking with tenant consent loops',
+      'Everything in Starter, with richer AI conversation style',
+      'More API integrations — groceries, clinics, delivery partners',
+      'Multi-provider price compare so residents get better deals',
+      'Leisure & outing bookings — beyond essentials',
+      'Delivery vs morning-call choices that feel natural on the phone',
+      'Consent-aware care booking (physio and similar services)',
     ],
   },
   {
     id: 'community-1999',
     name: 'Scale',
-    tagline: 'Full network, leisure, and premium offers',
+    tagline: 'Full API network and premium AI language',
     priceMonthly: 1999,
     perResidentMonthly: 60,
     bedsAssumed: AVERAGE_BEDS,
     includes: [
-      'Everything in Growth',
-      'Full provider network for grocery, medical, and leisure',
-      'Better offers: leisure, culture, and lifestyle bookings — not just essentials',
-      'Premium concierge-style negotiation across vendors',
-      'Priority scheduling & richer tenant calendar sync',
-      'Multi-community reporting on demo leads & plan mix',
+      'Everything in Growth, tuned for larger communities',
+      'Broadest API surface — grocery, medical, leisure, lifestyle',
+      'Best-in-class AI language: more natural, patient, and persuasive',
+      'Premium offers across leisure, culture, and concierge-style help',
+      'Deep calendar sync so every booking shows on the resident schedule',
+      'Priority routing and multi-community oversight for your ops team',
     ],
   },
 ];
 
 export const pricingAnchors = [
   {
-    name: 'GoGoGrandparent',
+    name: 'Compared with consumer concierge phones',
     detail:
-      'Charges individual consumers up to $409 per month for human-operated concierge-by-phone.',
+      'Services like GoGoGrandparent charge individuals up to $409 per month for human-operated phone help — Kogsy brings that care model to the whole community.',
   },
   {
-    name: 'After Hour Solutions',
+    name: 'Compared with facility AI that only books tours',
     detail:
-      'Charges facilities $2,000 to $4,500 per month for AI that only books tours.',
+      'Tour-only AI tools often run $2,000–$4,500 per month. Scale covers living support, not just admissions marketing.',
   },
 ] as const;
 

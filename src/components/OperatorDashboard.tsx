@@ -12,12 +12,18 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
 import HealingIcon from '@mui/icons-material/Healing';
+import { useEffect, useState } from 'react';
 import { useDemoCall } from '../hooks/useDemoCall';
+import {
+  loadDemoBookingCalls,
+  type DemoBookingCall,
+} from '../lib/demoBookingLog';
 import { ConnectionBadge } from './ConnectionBadge';
 import { TenantPanel } from './TenantPanel';
 import { TranscriptPanel } from './TranscriptPanel';
 import { ThinkingTreePanel } from './ThinkingTreePanel';
 import { ActionsPanel } from './ActionsPanel';
+import { DemoBookingLog } from './DemoBookingLog';
 
 function Panel({
   title,
@@ -58,6 +64,15 @@ export function OperatorDashboard() {
     reset,
   } = useDemoCall();
 
+  const [leads, setLeads] = useState<DemoBookingCall[]>([]);
+
+  useEffect(() => {
+    setLeads(loadDemoBookingCalls());
+    const onFocus = () => setLeads(loadDemoBookingCalls());
+    window.addEventListener('focus', onFocus);
+    return () => window.removeEventListener('focus', onFocus);
+  }, []);
+
   const canIntervene = Boolean(session && session.mode === 'ai');
 
   return (
@@ -75,7 +90,8 @@ export function OperatorDashboard() {
               Operator
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              Demo dashboard · AI call assist with manual takeover
+              Demo dashboard · AI call assist with manual takeover · internal
+              demo-lead log only
             </Typography>
           </Box>
           {session && (
@@ -218,6 +234,13 @@ export function OperatorDashboard() {
             )}
           </Grid>
         </Grid>
+
+        <Box mt={3}>
+          <DemoBookingLog
+            calls={leads}
+            onClear={() => setLeads([])}
+          />
+        </Box>
       </Container>
     </Box>
   );

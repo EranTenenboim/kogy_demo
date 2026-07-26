@@ -1,4 +1,4 @@
-# Kogy Operator Demo
+# Kogsy Operator Demo
 
 Operator dashboard demo for AI-assisted tenant calls with manual takeover.
 
@@ -37,9 +37,9 @@ Blueprint file: [`render.yaml`](render.yaml) (static site on Render CDN).
 3. Connect the repo and apply the Blueprint.
 4. Render runs `npm ci && npm run build` and publishes `dist`.
 
-Service name: `kogy-operator-demo` (free plan). SPA routes rewrite to `/index.html`.
+Service name: `kogsy-operator-demo` (free plan). SPA routes rewrite to `/index.html`.
 
 ## Agent guidance
 
-- Project skill: `.cursor/skills/kogy-operator-demo/`
-- Project rule: `.cursor/rules/kogy-operator-demo.mdc`
+- Project skill: `.cursor/skills/kogsy-operator-demo/`
+- Project rule: `.cursor/rules/kogsy-operator-demo.mdc`

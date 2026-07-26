@@ -24,7 +24,7 @@ export type DemoBookingLeadInput = {
   source?: DemoBookingCall['source'];
 };
 
-const STORAGE_KEY = 'kogy-demo-booking-calls';
+const STORAGE_KEY = 'kogsy-demo-booking-calls';
 
 function uid(): string {
   return `demo-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
@@ -64,7 +64,7 @@ export function appendDemoBookingCall(
     ...existing,
   ];
   saveDemoBookingCalls(next);
-  console.info('[kogy] demo booking lead logged', next[0]);
+  console.info('[kogsy] demo booking lead logged', next[0]);
   return next;
 }
 

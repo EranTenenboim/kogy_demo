@@ -21,10 +21,8 @@ import {
 import {
   appendDemoBookingCall,
   loadDemoBookingCalls,
-  type DemoBookingCall,
 } from '../lib/demoBookingLog';
 import { BookDemoDialog } from './BookDemoDialog';
-import { DemoBookingLog } from './DemoBookingLog';
 
 type Props = {
   focusRequest?: boolean;
@@ -32,14 +30,9 @@ type Props = {
 
 export function PricingPage({ focusRequest = false }: Props) {
   const tiersRef = useRef<HTMLDivElement | null>(null);
-  const [calls, setCalls] = useState<DemoBookingCall[]>([]);
   const [selectedTier, setSelectedTier] = useState<PricingTier | null>(null);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [justBooked, setJustBooked] = useState<string | null>(null);
-
-  useEffect(() => {
-    setCalls(loadDemoBookingCalls());
-  }, []);
 
   useEffect(() => {
     if (focusRequest) {
@@ -54,20 +47,17 @@ export function PricingPage({ focusRequest = false }: Props) {
 
   const submitLead = (data: { email: string; phone: string }) => {
     if (!selectedTier) return;
-    setCalls((prev) =>
-      appendDemoBookingCall(prev, {
-        tierId: selectedTier.id,
-        tierName: selectedTier.name,
-        priceMonthly: selectedTier.priceMonthly,
-        perResidentMonthly: selectedTier.perResidentMonthly,
-        email: data.email,
-        phone: data.phone,
-        source: 'pricing-tier',
-      }),
-    );
-    setJustBooked(
-      `${selectedTier.name} (${formatUsd(selectedTier.priceMonthly)})`,
-    );
+    // Persist for Operator reporting only — never shown on this client page
+    appendDemoBookingCall(loadDemoBookingCalls(), {
+      tierId: selectedTier.id,
+      tierName: selectedTier.name,
+      priceMonthly: selectedTier.priceMonthly,
+      perResidentMonthly: selectedTier.perResidentMonthly,
+      email: data.email,
+      phone: data.phone,
+      source: 'pricing-tier',
+    });
+    setJustBooked(selectedTier.name);
     setDialogOpen(false);
     setSelectedTier(null);
   };
@@ -83,19 +73,19 @@ export function PricingPage({ focusRequest = false }: Props) {
       >
         <Container maxWidth="lg">
           <Typography variant="overline" sx={{ opacity: 0.9 }}>
-            Kogy for communities
+            Kogsy for communities
           </Typography>
           <Typography variant="h3" component="h1" fontWeight={500} gutterBottom>
-            Pricing
+            Pricing that feels small next to what residents already pay
           </Typography>
           <Typography
             variant="h6"
-            sx={{ maxWidth: 640, fontWeight: 400, opacity: 0.95 }}
+            sx={{ maxWidth: 720, fontWeight: 400, opacity: 0.95 }}
           >
-            Per community per month. At an average {AVERAGE_BEDS}-bed community,
-            that is roughly {formatUsd(9)} / {formatUsd(24)} / {formatUsd(60)}{' '}
-            per resident — against {formatUsd(RESIDENT_FACILITY_FEE)} the resident
-            already pays the facility.
+            {formatUsd(299)} / {formatUsd(799)} / {formatUsd(1999)} per community
+            per month — about {formatUsd(9)} / {formatUsd(24)} / {formatUsd(60)}{' '}
+            per resident in an average {AVERAGE_BEDS}-bed home, against{' '}
+            {formatUsd(RESIDENT_FACILITY_FEE)} they already pay the facility.
           </Typography>
         </Container>
       </Box>
@@ -107,8 +97,8 @@ export function PricingPage({ focusRequest = false }: Props) {
             sx={{ mb: 2 }}
             onClose={() => setJustBooked(null)}
           >
-            Demo request received for <strong>{justBooked}</strong>. Contact and
-            price level are in the log below for reporting.
+            Thanks — we received your demo request for{' '}
+            <strong>{justBooked}</strong>. Our team will reach out shortly.
           </Alert>
         )}
 
@@ -136,7 +126,7 @@ export function PricingPage({ focusRequest = false }: Props) {
                     >
                       <Typography variant="h6">{tier.name}</Typography>
                       {tier.highlight && (
-                        <Chip size="small" color="primary" label="Popular" />
+                        <Chip size="small" color="primary" label="Most chosen" />
                       )}
                     </Stack>
                     <Box>
@@ -149,16 +139,8 @@ export function PricingPage({ focusRequest = false }: Props) {
                     </Box>
                     <Typography variant="body1">
                       ~{formatUsd(tier.perResidentMonthly)} per resident / month
-                      <Typography
-                        component="span"
-                        variant="body2"
-                        color="text.secondary"
-                      >
-                        {' '}
-                        (avg {tier.bedsAssumed} beds)
-                      </Typography>
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
+                    <Typography variant="subtitle2" color="primary.main">
                       {tier.tagline}
                     </Typography>
                     <Stack spacing={0.75} sx={{ flexGrow: 1 }}>
@@ -193,10 +175,11 @@ export function PricingPage({ focusRequest = false }: Props) {
 
         <Paper variant="outlined" sx={{ p: 3, mt: 3 }}>
           <Typography variant="subtitle1" fontWeight={600} gutterBottom>
-            Why {formatUsd(1999)} is defensible
+            Why communities choose Scale
           </Typography>
           <Typography variant="body2" color="text.secondary" paragraph>
-            Anchors that make {formatUsd(1999)} defensible:
+            Put the investment in context of what families and facilities already
+            spend for far narrower help.
           </Typography>
           <Stack spacing={1.5} divider={<Divider flexItem />}>
             {pricingAnchors.map((anchor) => (
@@ -209,16 +192,6 @@ export function PricingPage({ focusRequest = false }: Props) {
             ))}
           </Stack>
         </Paper>
-
-        <Box mt={3}>
-          <DemoBookingLog
-            calls={calls}
-            onClear={() => {
-              setCalls([]);
-              setJustBooked(null);
-            }}
-          />
-        </Box>
       </Container>
 
       <BookDemoDialog
