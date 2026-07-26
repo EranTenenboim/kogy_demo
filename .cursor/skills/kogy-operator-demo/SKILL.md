@@ -22,10 +22,12 @@ Demo for call-center operators. All external systems are mocked.
 
 ## Demo call scripts
 
+Conversations are multi-turn: listen → compassion → understand → compare providers → ask tenant → act.
+
 | Call | Intent | Expected thinking path |
 |------|--------|------------------------|
-| Milk about to end | Grocery | Classify grocery → add milk to list → schedule morning outcall reminder |
-| Foot hurts | Medical | Classify medical → assess urgency → if non-emergency, order physiotherapy when allowed |
+| Milk running low | Grocery | Empathy → add milk → compare Rewe / Bringmeister / Flink → if list ≥ 3 items ask deliver vs morning call → book chosen path |
+| Foot hurts | Medical | Empathy → urgency check → compare physios → ask if option helps → if no, offer another → if yes, auto-order checks + book |
 
 ## Auto-order rules (mock)
 

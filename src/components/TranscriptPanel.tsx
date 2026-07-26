@@ -26,7 +26,7 @@ const speakerColor = {
 
 export function TranscriptPanel({ lines }: Props) {
   return (
-    <Stack spacing={1.5} sx={{ maxHeight: 360, overflow: 'auto', pr: 1 }}>
+    <Stack spacing={1.5} sx={{ maxHeight: 480, overflow: 'auto', pr: 1 }}>
       {lines.length === 0 && (
         <Typography variant="body2" color="text.secondary">
           Waiting for call transcript…
