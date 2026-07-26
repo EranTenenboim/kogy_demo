@@ -41,12 +41,12 @@ export function TenantPanel({ tenant }: Props) {
         <Chip
           size="small"
           icon={<AccountBalanceWalletOutlinedIcon />}
-          label={`Wallet ₪${tenant.walletBalance}`}
+          label={`Wallet €${tenant.walletBalance}`}
           variant="outlined"
         />
         <Chip
           size="small"
-          label={`Max auto ₪${tenant.maxAutoOrderPrice}`}
+          label={`Max auto €${tenant.maxAutoOrderPrice}`}
           variant="outlined"
         />
       </Stack>
