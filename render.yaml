@@ -1,11 +1,11 @@
 # Render Blueprint — https://render.com/docs/blueprint-spec
 # Deploy: Dashboard → New → Blueprint → connect this repo
+# Static sites have no instance plan (always free CDN hosting).
 
 services:
   - type: web
     name: kogy-operator-demo
     runtime: static
-    plan: free
     buildCommand: npm ci && npm run build
     staticPublishPath: dist
     previews:
