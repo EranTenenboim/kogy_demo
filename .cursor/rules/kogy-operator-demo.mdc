@@ -1,0 +1,15 @@
+---
+description: Kogy operator demo conventions — mock externals, Material UI, thinking trees, operator intervene
+alwaysApply: true
+---
+
+# Kogy Operator Demo
+
+- This is a **demo**: mock all outside systems (telephony, grocery, medical, payments).
+- UI: **Google Material Design only** (`@mui/material`, `@mui/icons-material`). No other UI kits.
+- Core demo paths: grocery (milk ending) and medical (foot pain → physio if allowed).
+- Always surface AI thinking tree + tenant transcript on the operator view.
+- Auto-order only after mock checks: `autoOrderEnabled`, price ≤ `maxAutoOrderPrice`, sufficient `walletBalance`.
+- Operator can intervene and switch any live call AI → manual.
+- Prefer extending `src/mocks/` and thinking-tree branches over adding real integrations.
+- Deploy via Render Blueprint [`render.yaml`](../../render.yaml) (static site); do not add a Node web server for this demo.
