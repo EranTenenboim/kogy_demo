@@ -1,11 +1,9 @@
-import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
-import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Alert from '@mui/material/Alert';
 import CallEndIcon from '@mui/icons-material/CallEnd';
@@ -63,15 +61,20 @@ export function OperatorDashboard() {
   const canIntervene = Boolean(session && session.mode === 'ai');
 
   return (
-    <Box sx={{ minHeight: '100vh', bgcolor: 'grey.100' }}>
-      <AppBar position="sticky" color="primary" elevation={0}>
-        <Toolbar>
-          <SupportAgentIcon sx={{ mr: 1.5 }} />
-          <Box sx={{ flexGrow: 1 }}>
-            <Typography variant="h6" component="div" lineHeight={1.2}>
-              Kogy Operator
+    <Box sx={{ bgcolor: 'grey.100', minHeight: '100%' }}>
+      <Container maxWidth="xl" sx={{ py: 3 }}>
+        <Stack
+          direction={{ xs: 'column', sm: 'row' }}
+          justifyContent="space-between"
+          alignItems={{ xs: 'flex-start', sm: 'center' }}
+          spacing={1}
+          mb={2}
+        >
+          <Box>
+            <Typography variant="h5" fontWeight={500}>
+              Operator
             </Typography>
-            <Typography variant="caption" sx={{ opacity: 0.85 }}>
+            <Typography variant="body2" color="text.secondary">
               Demo dashboard · AI call assist with manual takeover
             </Typography>
           </Box>
@@ -79,21 +82,18 @@ export function OperatorDashboard() {
             <Stack direction="row" spacing={1} alignItems="center">
               <ConnectionBadge status={session.status} mode={session.mode} />
               <Button
-                color="inherit"
+                color="error"
                 variant="outlined"
                 startIcon={<CallEndIcon />}
                 disabled={!canIntervene}
                 onClick={intervene}
-                sx={{ borderColor: 'rgba(255,255,255,0.5)' }}
               >
                 Intervene → manual
               </Button>
             </Stack>
           )}
-        </Toolbar>
-      </AppBar>
+        </Stack>
 
-      <Container maxWidth="xl" sx={{ py: 3 }}>
         <Grid container spacing={2}>
           <Grid item xs={12} md={3}>
             <Panel title="Demo calls">

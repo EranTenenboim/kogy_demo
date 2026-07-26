@@ -48,6 +48,12 @@ Operator must see:
 - Proposed / completed actions
 - **Intervene** control that turns the call from AI to manual
 
+## Pricing & demo bookings
+
+- Top nav: **Pricing** and **Book a demo** both open the pricing page (Book a demo scrolls to tiers).
+- Each tier **Book a demo** opens a dialog for **email** + **phone**, then logs the lead with selected **price level** (`tierId`, `priceMonthly`) for reporting / CSV export.
+- Anchors for $1,999: GoGoGrandparent (up to $409/mo consumer), After Hour Solutions ($2,000–$4,500/mo tour AI).
+
 ## Tech conventions
 
 - React + TypeScript + Vite
